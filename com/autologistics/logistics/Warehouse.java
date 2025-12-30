@@ -1,17 +1,14 @@
 package com.autologistics.logistics;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Warehouse {
-    private final String id;
-    private final List<Part> parts = new ArrayList<>();
+    private String id;
+    private List<Part> parts = new ArrayList<>();
 
     public Warehouse(String id) {
         this.id = id;
-    }
-
-    public void addPart(Part part) {
-        parts.add(part);
     }
 
     public String getId() {
@@ -19,24 +16,28 @@ public class Warehouse {
     }
 
     public List<Part> getParts() {
-        return Collections.unmodifiableList(parts);
+        return parts;
+    }
+
+    public void addPart(Part part) {
+        parts.add(part);
     }
 
     @Override
     public String toString() {
-        return id;
+        return "Warehouse{" + "id='" + id + '\'' + ", parts=" + parts + '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Warehouse)) return false;
-        Warehouse that = (Warehouse) o;
-        return Objects.equals(id, that.id);
+        Warehouse w = (Warehouse) o;
+        return id.equals(w.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return id.hashCode();
     }
 }
